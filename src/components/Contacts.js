@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Contact from './Contact';
 
 class Contacts extends Component {
@@ -26,20 +26,26 @@ class Contacts extends Component {
         ]
     }
 
+    onDeleteContact = (event , id) => {
+        event.preventDefault();
+        const contacts = this.state.contacts.filter(contact => contact.id !== id)
+        this.setState({contacts:contacts})
+    }
+
     render() {
         const { contacts } = this.state 
 
         const contactsToRender = contacts.map(contact => {
  
             return(
-                    <Contact key={contact.id} contact={contact}/>
+                    <Contact key={contact.id} contact={contact} onDelete={this.onDeleteContact}/>
             )
         })
 
         return(
-            <div>
+            <Fragment>
                 {contactsToRender}
-            </div>
+            </Fragment>
         )
     }
 }

@@ -13,7 +13,7 @@ class Contact extends Component {
 
     render() {
         const { showContact } = this.state
-        const {name, email, phone } = this.props.contact;
+        const {id ,name, email, phone } = this.props.contact;
 
         let contactRender = null
 
@@ -28,7 +28,16 @@ class Contact extends Component {
 
         return (
             <div className="card card-body mb-3">
-                <h4>{name} <i onClick={this.onClickShowContact} className="fas fa-sort-down"></i></h4>
+                <h4>{name} <i onClick={this.onClickShowContact} 
+                    className="fas fa-sort-down" 
+                    style={{'cursor':'pointer'}}></i>
+                    <i className="fas fa-times"
+                        onClick={(event) => this.props.onDelete(event, id)} 
+                        style={{'cursor':'pointer'
+                                ,'float':'right',
+                                'color':'red'}}></i>
+                </h4>
+
                 {contactRender}
             </div>
         );
