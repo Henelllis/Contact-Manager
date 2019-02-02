@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import Contact from './Contact';
+import AddContact from './AddContact';
 
 class Contacts extends Component {
 
@@ -44,6 +45,7 @@ class Contacts extends Component {
 
         return(
             <Fragment>
+                 <AddContact/>
                 {contactsToRender}
             </Fragment>
         )
