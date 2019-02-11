@@ -15,6 +15,10 @@ class AddContact extends Component {
     
     onSubmit = (event) => {
         event.preventDefault()
+        const id = 0
+        const name = {...this.state.name}
+        const email = {...this.state.email}
+        const phone = {...this.state.phone}
 
     }
 
@@ -24,7 +28,7 @@ class AddContact extends Component {
             <div className="card mb-3">
                 <div className="card-header">Add Contact</div>
                 <div className="card-body">
-                    <form onSubmit={this.onSubmit}>
+                    <form onSubmit={  (event) => this.props.addContact(event,this.state) }>
                         <div className="form-group">
                         <label htmlFor="name">Name</label>
                         <input 

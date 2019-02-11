@@ -25,12 +25,29 @@ class Contacts extends Component {
                 phone: '333-333-7777'
             },
         ]
+        ,
+        nextContactId: 4
     }
 
     onDeleteContact = (event , id) => {
         event.preventDefault();
         const contacts = this.state.contacts.filter(contact => contact.id !== id)
         this.setState({contacts:contacts})
+    }
+
+    onAddContact = (event, argcontact) => {
+        event.preventDefault()
+        console.log('[Contacts: argContact]' + JSON.stringify(argcontact))
+        let {contacts} =  { ...this.state }
+        let contact = {...argcontact} 
+        contact.id = this.state.nextContactId
+        this.setState({nextContactId: contact.id += 1})
+        console.log('[Contacts: contact]' +JSON.stringify(contact))
+        console.log('[Contacts: contacts]' +JSON.stringify(contacts))
+
+        contacts.push(contact)
+        this.setState({contacts:contacts})
+
     }
 
     render() {
@@ -45,7 +62,7 @@ class Contacts extends Component {
 
         return(
             <Fragment>
-                 <AddContact/>
+                 <AddContact addContact={this.onAddContact}/>
                 {contactsToRender}
             </Fragment>
         )
